@@ -1,3 +1,4 @@
+// Require MongoDB language driver
 const { MongoClient } = require("mongodb")
 require("dotenv").config()
 
@@ -13,26 +14,28 @@ const accountsCollection = client.db(dbname).collection(collection_name)
 const connectToDatabase = async () => {
   try {
     await client.connect()
-    console.log(
-      `Connected to the ${dbname} database 🌍 \nFull connection string: ${uri}`
-    )
+    console.log(`Connected to the ${dbname} database 🌍 \nFull connection string: ${uri}`)
   } catch (err) {
     console.error(`Error connecting to the database: ${err}`)
   }
 }
 
-const documentsToFind = { balance: { $gt: 4700 } }
+const sampleAccount = {
+  account_holder: "MongoDB University Learner",
+  account_id: "MDB829001337",
+  account_type: "checking",
+  balance: 9999999999999,
+  last_updated: new Date()
+}
+
 
 const main = async () => {
   try {
-    await connectToDatabase();
-    // TODO: Run the find() method on the accounts collection and assign it to a variable, `result`
-    // let result =
-    let docCount = accountsCollection.countDocuments(documentsToFind)
-    await result.forEach((doc) => console.log(doc));
-    console.log(`Found ${await docCount} documents`);
+    await connectToDatabase()
+    let result = await accountsCollection.insertOne(sampleAccount)
+    console.log(`Inserted document: ${result.insertedId}`)
   } catch (err) {
-    console.error(`Error finding documents: ${err}`)
+    console.error(`Error inserting document: ${err}`)
   } finally {
     await client.close()
   }
