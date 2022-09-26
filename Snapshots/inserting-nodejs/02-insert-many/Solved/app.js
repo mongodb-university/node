@@ -26,12 +26,14 @@ const sampleAccounts = [
     account_holder: "Ada Lovelace",
     account_type: "checking",
     balance: 60218,
+    last_updated: new Date()
   },
   {
     account_id: "MDB829000001",
     account_holder: "Muhammad ibn Musa al-Khwarizmi",
     account_type: "savings",
     balance: 267914296,
+    last_updated: new Date()
   },
 ]
 
