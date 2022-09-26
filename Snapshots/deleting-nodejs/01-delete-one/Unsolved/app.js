@@ -19,7 +19,7 @@ const connectToDatabase = async () => {
   }
 }
 
-const documentToDelete = { _id: ObjectId("62a3638521a9ad028fdf77a1") }
+const documentToDelete = { _id: ObjectId("62d6e04ecab6d8e130497485") };
 
 const main = async () => {
   try {
