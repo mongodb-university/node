@@ -1,4 +1,3 @@
-// Require MongoDB language driver
 const { MongoClient, ObjectId } = require("mongodb")
 require("dotenv").config()
 
