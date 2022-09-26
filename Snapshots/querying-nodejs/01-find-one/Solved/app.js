@@ -21,7 +21,7 @@ const connectToDatabase = async () => {
   }
 }
 
-const documentToFind = { _id: ObjectId("62a3638521a9ad028fdf77a3") }
+const documentToFind = { _id: ObjectId("62d6e04ecab6d8e130497491") };
 
 const main = async () => {
   try {
