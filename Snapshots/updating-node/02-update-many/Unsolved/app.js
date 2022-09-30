@@ -14,7 +14,7 @@ const accountsCollection = client.db(dbname).collection(collection_name)
 const connectToDatabase = async () => {
   try {
     await client.connect()
-    console.log(`Connected to the ${dbname} database 🌍 \nFull connection string: ${uri}`)
+    console.log(`Connected to the ${dbname} database 🌍 \nFull connection string: ${safeURI}`)
   } catch (err) {
     console.error(`Error connecting to the database: ${err}`)
   }

@@ -1,6 +1,8 @@
 const { MongoClient } = require("mongodb")
 require("dotenv").config()
 const uri = process.env.MONGODB_URI
+const safeURI = `${uri.slice(0, 14)}****${uri.slice(30, 31)}****${uri.slice(47)}`
+
 const client = new MongoClient(uri)
 const dbname = "bank";
 const collection_name = "accounts";
@@ -30,7 +32,7 @@ const pipeline = [
 const main = async () => {
   try {
     await client.connect()
-    console.log(`Connected to the database 🌍\n ${uri}`)
+    console.log(`Connected to the database 🌍\n ${safeURI}`)
     let result = await accountsCollection.aggregate(pipeline)
     for await (const doc of result) {
       console.log(doc)

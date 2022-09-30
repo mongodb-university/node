@@ -4,6 +4,8 @@ const { ObjectId } = require("mongodb")
 require("dotenv").config()
 
 const uri = process.env.MONGODB_URI
+const safeURI = `${uri.slice(0, 14)}****${uri.slice(30, 31)}****${uri.slice(47)}`
+
 const client = new MongoClient(uri)
 
 const dbname = "bank"
@@ -15,7 +17,7 @@ const accountsCollection = client.db(dbname).collection(collection_name)
 const connectToDatabase = async () => {
   try {
     await client.connect()
-    console.log(`Connected to the ${dbname} database 🌍 \nFull connection string: ${uri}`)
+    console.log(`Connected to the ${dbname} database 🌍 \nFull connection string: ${safeURI}`)
   } catch (err) {
     console.error(`Error connecting to the database: ${err}`)
   }
