@@ -4,6 +4,7 @@ require("dotenv").config()
 
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri)
+const safeURI = `${uri.slice(0, 14)}****${uri.slice(30, 31)}****${uri.slice(47)}`;
 
 const dbname = "bank"
 const collection_name = "accounts"
