@@ -22,7 +22,7 @@ const connectToDatabase = async () => {
   } catch (err) {
     console.error(`Error connecting to the database: ${err}`);
   }
-};
+}
 
 // Filter used to find the document to update
 const documentToUpdate = { _id: ObjectId("62d6e04ecab6d8e130497482") };
@@ -43,6 +43,6 @@ const main = async () => {
   } finally {
     await client.close();
   }
-};
+}
 
-main();
+main()
