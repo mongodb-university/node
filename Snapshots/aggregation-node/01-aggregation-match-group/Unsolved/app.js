@@ -9,7 +9,7 @@ const collection_name = "accounts";
 const accountsCollection = client.db(dbname).collection(collection_name);
 
 const pipeline = [
-  // Stage 1: Get the accounts with a balance lesser than $1,000
+  // Stage 1: Get the accounts with a balance less than $1,000
 
   // Stage 2: Calculate average balance and total balance
 ]
