@@ -28,7 +28,7 @@ const documentToFind = { _id: ObjectId("62d6e04ecab6d8e130497491") };
 const main = async () => {
   try {
     await connectToDatabase();
-    // TODO: Find the document included in `documentToFind` and assign the result to a variable, `result` 💡
+    // TODO: Get the document included in `documentToFind` and assign the result to a variable, `result` 💡
     // let result =
     console.log(`Found one document`);
     console.log(result);

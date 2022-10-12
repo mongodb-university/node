@@ -21,12 +21,20 @@ const session = client.startSession();
 // Note: Each individual operation must be awaited and have the session passed in as an argument
 const main = async () => {
   try {
-    await session.withTransaction(async () => {
-      // TODO: Update the sender balance and pass along the `session` object
+    const transactionResults = await session.withTransaction(async () => {
+      // TODO Step 1: Update the sender balance and pass along the `session` object
 
-      // TODO: Update the receiver balance and pass along the `session` object
+      // Step 2: Update the account receiver balance
+      const updateReceiverResults = await accounts.updateOne(
+        { account_id: account_id_receiver },
+        { $inc: { balance: transaction_amount } },
+        { session }
+      );
+      console.log(
+        `${updateReceiverResults.matchedCount} document(s) matched the filter, updated ${updateReceiverResults.modifiedCount} document(s) for the receiver account.`
+      );
 
-      // Transaction object to be inserted into the `transfers` collection
+      // Step 3: Insert the transfer document
       const transfer = {
         transfer_id: "TR21872187",
         amount: 100,
@@ -34,11 +42,31 @@ const main = async () => {
         to_account: account_id_receiver,
       };
 
-      // TODO: Insert `transfer` into the `transfers` collection and pass along the `session` object
+      const insertTransferResults = await transfers.insertOne(transfer, {
+        session,
+      });
+      console.log(
+        `Successfully inserted ${insertTransferResults.insertedId} into the transfers collection`
+      );
 
-      // TODO: Push the `transfer_id` into the `transfers_complete` array for `account_id_sender` and pass along the `session` object
-
-      // TODO: Push the `transfer_id` into the `transfers_complete` array for `account_id_receiver` and pass along the `session` object
+      // Step 4: Update the transfers_complete field for the sender account
+      const updateSenderTransferResults = await accounts.updateOne(
+        { account_id: account_id_sender },
+        { $push: { transfers_complete: transfer.transfer_id } },
+        { session }
+      );
+      console.log(
+        `${updateSenderTransferResults.matchedCount} document(s) matched in the transfers collection, updated ${updateSenderTransferResults.modifiedCount} document(s) for the sender account.`
+      );
+      // Step 5: Update the transfers_complete field for the receiver account
+      const updateReceiverTransferResults = await accounts.updateOne(
+        { account_id: account_id_receiver },
+        { $push: { transfers_complete: transfer.transfer_id } },
+        { session }
+      );
+      console.log(
+        `${updateReceiverTransferResults.matchedCount} document(s) matched in the transfers collection, updated ${updateReceiverTransferResults.modifiedCount} document(s) for the receiver account.`
+      );
     });
 
     console.log("Committing transaction ...");

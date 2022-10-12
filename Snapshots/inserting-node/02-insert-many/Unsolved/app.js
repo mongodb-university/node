@@ -42,16 +42,16 @@ const sampleAccounts = [
 const main = async () => {
   try {
     await connectToDatabase();
-    // TODO: Run the insertOne method on the accounts collection and assign it to a variable,`result` 💡
+    // TODO: Insert the sample accounts into the database
     // let result =
     console.log(`Inserted ${result.insertedCount} documents`);
     console.log(result);
   } catch (err) {
-    console.error(`Error inserting documents: ${err}`)
+    console.error(`Error inserting documents: ${err}`);
   } finally {
-    await client.close()
+    await client.close();
   }
-}
+};
 
 main()
 

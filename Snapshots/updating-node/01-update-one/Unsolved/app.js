@@ -33,7 +33,7 @@ const update = { $inc: { balance: 100 } };
 const main = async () => {
   try {
     await connectToDatabase();
-    // TODO: Run the updateOne() method on the accounts collection and assign it to a variable, `result`
+    // TODO: Run the method on the accounts collection and assign it to a variable, `result`
     // let result =
     result.modifiedCount === 1
       ? console.log("Updated one document")

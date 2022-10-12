@@ -27,7 +27,7 @@ const update = { $push: { transfers_complete: "TR413308000" } }
 const main = async () => {
   try {
     await connectToDatabase();
-    // TODO: Run the updateMany() method on the accounts collection and assign it to a variable, `result`
+    // TODO: Run the method on the accounts collection and assign it to a variable, `result`
     // let result =
     result.modifiedCount > 0
       ? console.log(`Updated ${result.modifiedCount} documents`)

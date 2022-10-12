@@ -9,12 +9,10 @@ const collection_name = "accounts";
 const accountsCollection = client.db(dbname).collection(collection_name);
 
 const pipeline = [
-  // Stage 1: $match - filter the documents (checking, balance >= 1500)
-
-  // Stage 2: $sort - sorts the documents in descending order (balance)
-
-  // Stage 3: $project - project only the requested fields and one computed field (account_type, balance, gbp_balance)
-]
+  // Stage 1: Match accounts with a balance greater than 1,500 USD
+  // Stage 2: Sort the documents in the collection by the balance field in descending order
+  // Stage 3: Project the account_id, account_type,and balance fields and a new field called gdp_balance which divides the balance field by 1.3
+];
 
 const main = async () => {
   try {

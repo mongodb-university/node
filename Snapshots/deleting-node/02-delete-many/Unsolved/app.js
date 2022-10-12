@@ -29,7 +29,7 @@ const documentsToDelete = { balance: { $lt: 500 } };
 const main = async () => {
   try {
     await connectToDatabase();
-    // TODO: Run the deleteMany() method on the accounts collection and assign it to a variable, `result`
+    // TODO: Run the method on the accounts collection and assign it to a variable, `result`
     // let result =
     result.deletedCount > 0
       ? console.log(`Deleted ${result.deletedCount} documents`)

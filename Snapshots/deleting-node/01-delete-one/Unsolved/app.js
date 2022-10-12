@@ -25,7 +25,7 @@ const documentToDelete = { _id: ObjectId("62d6e04ecab6d8e130497485") };
 const main = async () => {
   try {
     await connectToDatabase();
-    // TODO: Run the deleteOne() method on the accounts collection and assign it to a variable, `result`
+    // TODO: Run the method on the accounts collection and assign it to a variable, `result`
     // let result =
     result.deletedCount === 1
       ? console.log("Deleted one document")

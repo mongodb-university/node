@@ -28,7 +28,7 @@ const documentsToFind = { balance: { $gt: 4700 } }
 const main = async () => {
   try {
     await connectToDatabase();
-    // TODO: Run the find() method on the accounts collection and assign it to a variable, `result`
+    // TODO: Run a method on the accounts collection and assign it to a variable, `result`
     // let result =
     let docCount = accountsCollection.countDocuments(documentsToFind)
     await result.forEach((doc) => console.log(doc));
